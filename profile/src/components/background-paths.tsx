@@ -23,8 +23,20 @@ function FloatingPaths({ position, count = 28 }: FloatingPathsProps) {
     typeof window !== "undefined" &&
     window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
+  // Detect small / touch devices (mobile Safari often falls into these).
+  const isSmallScreen =
+    typeof window !== "undefined" && window.matchMedia?.("(max-width: 640px)")?.matches;
+  const isTouch = typeof window !== "undefined" && window.matchMedia?.("(pointer: coarse)")?.matches;
+  const isiOSLike =
+    typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  const prefersSimple = reduceMotion || isSmallScreen || isTouch || isiOSLike;
+
   const paths = useMemo(() => {
-    return Array.from({ length: count }, (_, i) => {
+    // Reduce the number of animated paths on small/touch devices to save CPU.
+    const effectiveCount = prefersSimple ? Math.min(count, 6) : count;
+
+    return Array.from({ length: effectiveCount }, (_, i) => {
       const t = count <= 1 ? 0 : i / (count - 1);
       const rnd = seeded01(i * 1000 + (position > 0 ? 17 : 29));
 
@@ -54,27 +66,29 @@ function FloatingPaths({ position, count = 28 }: FloatingPathsProps) {
         <title>Background Paths</title>
         <defs>
           {/* Subtle glow around strokes */}
-          <filter
-            id="bg-path-glow"
-            x="-25%"
-            y="-25%"
-            width="150%"
-            height="150%"
-            colorInterpolationFilters="sRGB"
-          >
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="blur1" />
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur2" />
-            <feMerge>
-              <feMergeNode in="blur2" />
-              <feMergeNode in="blur1" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+          {!prefersSimple && (
+            <filter
+              id="bg-path-glow"
+              x="-25%"
+              y="-25%"
+              width="150%"
+              height="150%"
+              colorInterpolationFilters="sRGB"
+            >
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="blur1" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur2" />
+              <feMerge>
+                <feMergeNode in="blur2" />
+                <feMergeNode in="blur1" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          )}
         </defs>
 
-        <g filter="url(#bg-path-glow)">
+        <g {...(!prefersSimple ? { filter: "url(#bg-path-glow)" } : {})}>
           {paths.map((path) => {
-            if (reduceMotion) {
+            if (prefersSimple) {
               return (
                 <path
                   key={path.id}
@@ -149,6 +163,16 @@ export const BackgroundPathsBackdrop = memo(function BackgroundPathsBackdrop() {
 export function BackgroundPaths({ title = "Background Paths" }: { title?: string }) {
   const words = title.split(" ");
 
+  const reduceMotion =
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  const isSmallScreen =
+    typeof window !== "undefined" && window.matchMedia?.("(max-width: 640px)")?.matches;
+  const isTouch = typeof window !== "undefined" && window.matchMedia?.("(pointer: coarse)")?.matches;
+  const isiOSLike =
+    typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  const prefersSimple = reduceMotion || isSmallScreen || isTouch || isiOSLike;
+
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
       <div className="absolute inset-0">
@@ -158,30 +182,43 @@ export function BackgroundPaths({ title = "Background Paths" }: { title?: string
 
       <div className="container relative z-10 mx-auto px-4 text-center md:px-6">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
+          initial={prefersSimple ? undefined : { opacity: 0 }}
+          animate={prefersSimple ? undefined : { opacity: 1 }}
+          transition={prefersSimple ? undefined : { duration: 2 }}
           className="mx-auto max-w-4xl"
         >
           <h1 className="mb-8 text-5xl font-bold tracking-tighter sm:text-7xl md:text-8xl">
             {words.map((word, wordIndex) => (
               <span key={wordIndex} className="mr-4 inline-block last:mr-0">
-                {word.split("").map((letter, letterIndex) => (
-                  <motion.span
-                    key={`${wordIndex}-${letterIndex}`}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      delay: wordIndex * 0.1 + letterIndex * 0.03,
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 25,
-                    }}
-                    className="inline-block bg-gradient-to-r from-neutral-900 to-neutral-700/80 bg-clip-text text-transparent dark:from-white dark:to-white/80"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
+                {word.split("").map((letter, letterIndex) => {
+                  if (prefersSimple) {
+                    return (
+                      <span
+                        key={`${wordIndex}-${letterIndex}`}
+                        className="inline-block bg-gradient-to-r from-neutral-900 to-neutral-700/80 bg-clip-text text-transparent dark:from-white dark:to-white/80"
+                      >
+                        {letter}
+                      </span>
+                    );
+                  }
+
+                  return (
+                    <motion.span
+                      key={`${wordIndex}-${letterIndex}`}
+                      initial={{ y: 100, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{
+                        delay: wordIndex * 0.1 + letterIndex * 0.03,
+                        type: "spring",
+                        stiffness: 150,
+                        damping: 25,
+                      }}
+                      className="inline-block bg-gradient-to-r from-neutral-900 to-neutral-700/80 bg-clip-text text-transparent dark:from-white dark:to-white/80"
+                    >
+                      {letter}
+                    </motion.span>
+                  );
+                })}
               </span>
             ))}
           </h1>
