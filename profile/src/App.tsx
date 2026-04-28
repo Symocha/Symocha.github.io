@@ -311,16 +311,7 @@ function App() {
               <span className="tag accent" key={t}>{t}</span>
             ))}
           </div>
-        </div>
-
-        {/* ── Tools & DB ── */}
-        <div className="bento-card col-span-2">
-          <p className="section-title">{isFr ? 'Outils et bases de donnees' : 'Tools & Databases'}</p>
-          <div className="tag-list">
-            {['SQL Server','SSMS','Git','Azure DevOps','Figma','OrCAD','Oracle Cloud','Postman','Linux','Ollama'].map(t => (<span className="tag" key={t}>{t}</span>))}
-          </div>
-        </div>
-
+        </div>        
 
         {/* ── Hackathon ── */}
         <div className="bento-card hackathon">
@@ -339,6 +330,15 @@ function App() {
           <p>{isFr ? 'Participant. Presence a des sessions sur les operations de cybersecurite, la securite cloud et les menaces emergentes. La participation à la conference à été financé par D3 Security et par le FAEE de l\'Université de Sherbrooke.' : 'Attendee. Participated in industry sessions on cybersecurity operations, cloud security, and emerging threats. Conference attendance financed by D3 Security and by the FAEE of the University of Sherbrooke.'}</p>
         </div>
             
+
+        {/* ── Tools & DB ── */}
+        <div className="bento-card col-span-2">
+          <p className="section-title">{isFr ? 'Outils et bases de donnees' : 'Tools & Databases'}</p>
+          <div className="tag-list">
+            {['SQL Server','SSMS','Git','Azure DevOps','Figma','OrCAD','Oracle Cloud','Postman','Linux','Ollama'].map(t => (<span className="tag" key={t}>{t}</span>))}
+          </div>
+        </div>
+
 
         {/* ── Projects ── */}
         <div className="bento-card col-span-3 row-span-2" id="projects" onMouseLeave={() => setOpenProject(null)}>
