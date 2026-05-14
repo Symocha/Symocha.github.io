@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { BackgroundPathsBackdrop } from './components/background-paths'
 import { ProjectCard } from './components/ProjectCard'
+import { TextHoverEffect } from './components/ui/text-hover-effect'
 import type { Project } from './components/ProjectCard'
 
 const PROJECTS_EN: Project[] = [
@@ -98,9 +99,18 @@ const PROJECTS_FR: Project[] = [
 function App() {
   const [openProject, setOpenProject] = useState<number | null>(null)
   const [lang, setLang] = useState<'en' | 'fr'>('en')
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 800)
 
   const isFr = lang === 'fr'
   const projects = isFr ? PROJECTS_FR : PROJECTS_EN
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 800)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -249,11 +259,15 @@ function App() {
 
 
       <section className="landing-section">
-        <p className="kicker">{isFr ? 'Tech' : 'Tech'}</p>
-        <h1>Olivier Tran</h1>
-        <p className="subtitle">{isFr ? 'Étudiant en informatique' : 'Computer Science Student'}</p>
+        <p className="kicker text-center">{isFr ? 'Tech' : 'Tech'}</p>
+        <div className="h-32 w-full flex justify-start">
+          <TextHoverEffect text={isSmallScreen ? "OLIVIER" : "OLIVIER TRAN"} />
+        </div>
+        <div className="w-full flex justify-center">
+          <p className="subtitle text-center">{isFr ? 'Étudiant en informatique' : 'Computer Science Student'}</p>
+        </div>
 
-        <div className="hero-cta">
+        <div className="hero-cta justify-center">
           <a href="#projects" className="cta-primary">{isFr ? 'Voir les projets' : 'View Projects'}</a>
           <a href="mailto:Olivier.Tran@USherbrooke.ca" className="cta-secondary">{isFr ? 'Me contacter' : 'Contact Me'}</a>
         </div>
@@ -273,7 +287,9 @@ function App() {
 
         {/* ── Hero ── */}
         <div className="bento-card hero-card col-span-3">
-          <h1>Olivier Tran</h1>
+          <div className="h-20 w-full mb-2">
+            <h1>Olivier Tran</h1>
+          </div>
           <p className="subtitle">{isFr ? 'Étudiant en informatique · Recherche un stage 1' : 'Computer Science Student · Seeking Stage 1 Internship'}</p>
           <div className="links">
             <a href="mailto:Olivier.Tran@USherbrooke.ca">Olivier.Tran@USherbrooke.ca</a>
