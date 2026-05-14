@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://symocha.github.io/profile",
+  "homepage": "https://symocha.github.io/",
   "scripts": {
     "dev": "vite",
     "start": "vite",
