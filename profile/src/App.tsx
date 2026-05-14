@@ -411,17 +411,22 @@ function App() {
         <div className="bento-card col-span-2 timeline-card minimal-card">
           <p className="section-title">{isFr ? 'Parcours' : 'Timeline'}</p>
           <ol className="timeline-list">
+            
             <li>
-              <strong>2021 - 2023</strong>
-              <span>{isFr ? 'Prepose a la salubrite et a l hygiene' : 'Sanitation & Hygiene Attendant'}</span>
-            </li>
-            <li>
-              <strong>2026</strong>
+              <strong>{isFr ? 'Janvier 2026' : 'January 2026'}</strong>
               <span>{isFr ? 'ConUHacks 1re place - defi D3 Security' : 'ConUHacks 1st Place - D3 Security Challenge'}</span>
             </li>
             <li>
-              <strong>2026</strong>
+              <strong>{isFr ? 'Mars 2026' : 'March 2026'}</strong>
               <span>{isFr ? 'Participant RSAC Conference, San Francisco' : 'RSAC Conference Attendee, San Francisco'}</span>
+            </li>
+            <li>
+              <strong>{isFr ? 'Automne 2026' : 'Fall 2026'}</strong>
+              <span>{isFr ? 'Stage - 12 semaines' : 'Internship - 12 weeks'}</span>
+            </li>
+            <li>
+              <strong>{isFr ? 'Hiver 2026' : 'Winter 2026'}</strong>
+              <span>{isFr ? 'Trimestre de cours' : 'Course Term'}</span>
             </li>
           </ol>
         </div>

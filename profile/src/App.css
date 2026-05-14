@@ -633,7 +633,7 @@ html {
 /* Cards are hidden/animated by the scroll-driven JS in App.tsx */
 /* CSS only handles the hover state once cards are fully revealed */
 .bento-card {
-  background: #18181b;
+  background: #18181bd0;
   border: 1px solid #27272a;
   border-radius: 16px;
   padding: 1.5rem;
