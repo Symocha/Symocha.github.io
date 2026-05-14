@@ -473,9 +473,12 @@ function App() {
               <span className="interest-icon"><i className="fa-solid fa-microchip"></i></span>
               {isFr ? 'Electronique' : 'Electronics'}
             </div>
+            <div className="interest-item">
+              <span className="interest-icon"><i className="fa-solid fa-paint-brush"></i></span>
+              {isFr ? 'Art Digital' : 'Digital Art'}
+            </div>
           </div>
         </div>
-
 
       </div>
       </section>
