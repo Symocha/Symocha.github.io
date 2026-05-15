@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   IconHome,
   IconBrandGithub,
@@ -118,14 +119,14 @@ function App() {
       href: '#/',
     },
     {
-      title: isFr ? 'Conference' : 'Conference',
-      icon: <IconSchool className="h-full w-full" />,
-      href: '#/conference',
-    },
-    {
       title: isFr ? 'Thornmail' : 'Thornmail',
       icon: <IconTrophy className="h-full w-full" />,
       href: '#/thornmail',
+    },    
+    {
+      title: isFr ? 'Conference' : 'Conference',
+      icon: <IconSchool className="h-full w-full" />,
+      href: '#/conference',
     },
     {
       title: isFr ? 'GitHub' : 'GitHub',
@@ -366,21 +367,20 @@ function App() {
         </div>        
 
         {/* ── Hackathon ── */}
-        <div className="bento-card hackathon">
+        <Link to="/thornmail" className="bento-card hackathon block cursor-pointer transition-transform duration-200 hover:-translate-y-1">
           <p className="section-title">{isFr ? 'Hackathons' : 'Hackathons'}</p>
           <h3> ConUHacks 2026</h3>
           <p>{isFr ? 'Defi commandite par D3 Security ' : 'D3 Security Sponsored Challenge '}<div className='hack-position'>{isFr ? '1re place' : '1st Place'}</div></p>
-          <p>{isFr ? 'Plateforme de priorisation d\'alertes SOC assistee par IA' : 'AI-assisted SOC alert prioritization platform'}</p>
-          <a href="https://devpost.com/software/sentinel-2sjz9f" target="_blank" rel="noreferrer">{isFr ? 'Voir sur Devpost' : 'View on Devpost'} &rarr;</a>
-        </div>
+          <p>{isFr ? 'Plateforme de priorisation d\'alertes SOC assistee par IA' : 'AI-assisted SOC alert prioritization platform'}</p>          
+        </Link>
 
         {/* ── Conference ── */}
-        <div className="bento-card experience">
+        <Link to="/conference" className="bento-card experience block cursor-pointer transition-transform duration-200 hover:-translate-y-1">
           <p className="section-title">{isFr ? 'Conference' : 'Conference'}</p>
           <h3>RSAC</h3>
           <p className="exp-meta">San Francisco 2026</p>
           <p>{isFr ? 'Participant. Presence a des sessions sur les operations de cybersecurite, la securite cloud et les menaces emergentes. La participation à la conference à été financé par D3 Security et par le FAEE de l\'Université de Sherbrooke.' : 'Attendee. Participated in industry sessions on cybersecurity operations, cloud security, and emerging threats. Conference attendance financed by D3 Security and by the FAEE of the University of Sherbrooke.'}</p>
-        </div>
+        </Link>
             
 
         {/* ── Tools & DB ── */}

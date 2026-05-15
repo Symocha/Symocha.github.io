@@ -11,6 +11,16 @@ import { FloatingDock } from '../components/ui/floating-dock'
 import { TextHoverEffect } from '../components/ui/text-hover-effect'
 import AppleCardsCarouselDemo from '../components/ui/AppleCardsCarouselDemo'
 
+const thornmailPics = [
+  new URL('../assets/thornmailPic/image.jpg', import.meta.url).href,  
+  new URL('../assets/thornmailPic/image4.jpg', import.meta.url).href,
+  new URL('../assets/thornmailPic/image1.jpg', import.meta.url).href,
+  new URL('../assets/thornmailPic/image2.jpg', import.meta.url).href,
+  new URL('../assets/thornmailPic/image3.jpg', import.meta.url).href,
+]
+
+const thornmailHeroPic = new URL('../assets/thornmailPic/Thornmail2.png', import.meta.url).href
+
 export default function ThornmailPage() {
   const [lang, setLang] = useState<'en' | 'fr'>('en')
   const isFr = lang === 'fr'
@@ -21,16 +31,16 @@ export default function ThornmailPage() {
       title: isFr ? 'Accueil' : 'Home',
       icon: <IconHome className="h-full w-full" />,
       href: '#/',
+    },    
+    {
+      title: isFr ? 'Thornmail' : 'Thornmail',
+      icon: <IconTrophy className="h-full w-full" />,
+      href: '#/thornmail',
     },
     {
       title: isFr ? 'Conference' : 'Conference',
       icon: <IconSchool className="h-full w-full" />,
       href: '#/conference',
-    },
-    {
-      title: isFr ? 'Thornmail' : 'Thornmail',
-      icon: <IconTrophy className="h-full w-full" />,
-      href: '#/thornmail',
     },
     {
       title: isFr ? 'GitHub' : 'GitHub',
@@ -92,37 +102,59 @@ export default function ThornmailPage() {
 
         <section className="content-section bento-container">
           <div className="bento-grid">
-            <div className="bento-card col-span-2">
+            <div className="bento-card col-span-3 p-6 border border-blue-500/20 bg-slate-900/70 shadow-2xl backdrop-blur-xl">
               <p className="section-title">{isFr ? 'Apercu' : 'Overview'}</p>
-              <h3>{isFr ? 'Thornmail' : 'Thornmail'}</h3>
-              <p className="exp-meta">ConUHacks 2026</p>
-              <p>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">Thornmail</h3>
+              <p className="exp-meta text-blue-200/80">ConUHacks 2026</p>
+              <p className="mt-3 max-w-3xl text-sm md:text-base leading-7 text-slate-200/90">
                 {isFr
-                  ? 'Thornmail combine des heuristiques, correlation d entites et un LLM local pour prioriser et contextualiser les alertes SOC.'
-                  : 'Thornmail combines heuristics, entity correlation, and a local LLM to prioritize and contextualize SOC alerts.'}
+                  ? 'Thornmail a été inspiré par la frustration de voir de vraies menaces de sécurité noyées dans des milliers d alertes bruyantes. Plutôt que de traiter chaque journal comme un incident séparé, nous voulions créer un système qui pense comme un analyste humain en organisant l activité en histoires claires et reliées, au lieu d évènements éparpillés.'
+                  : 'Thornmail was inspired by the frustration of seeing real security threats buried under thousands of noisy alerts. Instead of treating every log as a separate issue, we wanted to build a system that thinks the way human analysts do by organizing activity into clear, connected stories rather than scattered events.'}
               </p>
+              <p className="mt-3 max-w-3xl text-sm md:text-base leading-7 text-slate-300/90">
+                {isFr
+                  ? 'Le projet nous a appris à concevoir des algorithmes fiables de clustering et de scoring du risque, tout en utilisant l IA comme outil d aide pour mettre en évidence les points clés et les patterns importants des données, et non comme décision finale.'
+                  : 'Through this project, we learned how to design reliable security algorithms for clustering and risk scoring, while using AI as a support tool for highlighting key points and important patterns in the data, not as the final decision maker.'}
+              </p>
+              
             </div>
 
-            <div className="bento-card col-span-2">
+            <div className="bento-card col-span-1">
               <p className="section-title">{isFr ? 'Technologies' : 'Technologies'}</p>
               <div className="tag-list">
-                {['Python', 'React', 'Ollama', 'LLM', 'Cybersecurity'].map(t => (
+                {['FastAPI', 'Next.js', 'NumPy', 'Ollama + Llama 3', 'Pandas', 'Python 3.11+', 'React', 'Tailwind CSS 4', 'TypeScript 5', 'Uvicorn'].map(t => (
                   <span className="tag accent" key={t}>{t}</span>
                 ))}
               </div>
             </div>
 
-            <div className="bento-card col-span-3 row-span-2 dark:bg-slate-900 bg-slate-800 p-6">
-              <p className="section-title">{isFr ? 'Demonstration' : 'Demo'}</p>
-              <AppleCardsCarouselDemo />
+            <div className="bento-card col-span-4 overflow-hidden border border-blue-500/20 bg-slate-900/70 p-4 shadow-2xl backdrop-blur-xl">
+              <p className="section-title">{isFr ? 'Image principale' : 'Hero Image'}</p>
+              <div className="mt-3 overflow-hidden rounded-2xl border border-blue-500/10 bg-slate-950/60">
+                <img
+                  src={thornmailHeroPic}
+                  alt={isFr ? 'Image principale du projet Thornmail' : 'Thornmail project hero image'}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="bento-card col-span-4 row-span-2 dark:bg-slate-900 bg-slate-800 p-6">
+              <p className="section-title">{isFr ? 'Photos' : 'Photos'}</p>
+              <AppleCardsCarouselDemo
+                heading={isFr ? 'Photos Thornmail' : 'Thornmail Photos'}
+                category={isFr ? 'ConUHacks 2026' : 'ConUHacks 2026'}
+                description={isFr ? 'Moments forts du hackathon Thornmail.' : 'Thornmail hackathon moments and project snapshots.'}
+                images={thornmailPics}
+              />
             </div>
 
             <div className="bento-card experience">
               <p className="section-title">{isFr ? 'Resultats' : 'Outcomes'}</p>
               <p>
                 {isFr
-                  ? 'Prototype fonctionnel et 1re place au defi D3 Security.'
-                  : 'Working prototype and 1st place in the D3 Security challenge.'}
+                  ? 'Prototype fonctionnel et 1re place au defi D3 Security, ce qui a ensuite mené à la conférence RSAC.'
+                  : 'Working prototype and 1st place in the D3 Security challenge, which then led to the RSAC conference.'}
               </p>
             </div>
 

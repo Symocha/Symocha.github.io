@@ -12,6 +12,16 @@ import { FloatingDock } from '../components/ui/floating-dock'
 import { TextHoverEffect } from '../components/ui/text-hover-effect'
 import AppleCardsCarouselDemo from '../components/ui/AppleCardsCarouselDemo'
 
+const conferencePics = [
+  new URL('../assets/pictures/DSCF1634.JPG', import.meta.url).href,
+  new URL('../assets/pictures/DSCF1759.JPG', import.meta.url).href,
+  new URL('../assets/pictures/DSCF1769.JPG', import.meta.url).href,
+  new URL('../assets/pictures/DSCF1835.JPG', import.meta.url).href,
+  new URL('../assets/pictures/IMG_2550.JPG', import.meta.url).href,
+  new URL('../assets/pictures/IMG_9673.JPG', import.meta.url).href,
+  new URL('../assets/pictures/DSCF1571.JPG', import.meta.url).href,
+]
+
 export default function ConferencePage() {
   const [lang, setLang] = useState<'en' | 'fr'>('en')
   const isFr = lang === 'fr'
@@ -27,16 +37,16 @@ export default function ConferencePage() {
       title: isFr ? 'Accueil' : 'Home',
       icon: <IconHome className="h-full w-full" />,
       href: '#/',
+    },    
+    {
+      title: isFr ? 'Thornmail' : 'Thornmail',
+      icon: <IconTrophy className="h-full w-full" />,
+      href: '#/thornmail',
     },
     {
       title: isFr ? 'Conference' : 'Conference',
       icon: <IconSchool className="h-full w-full" />,
       href: '#/conference',
-    },
-    {
-      title: isFr ? 'Thornmail' : 'Thornmail',
-      icon: <IconTrophy className="h-full w-full" />,
-      href: '#/thornmail',
     },
     {
       title: isFr ? 'GitHub' : 'GitHub',
@@ -96,17 +106,34 @@ export default function ConferencePage() {
 
             <div className="bento-card col-span-3 row-span-2 dark:bg-slate-900 bg-slate-800 p-6">
               <p className="section-title">{isFr ? 'Galerie' : 'Photo Gallery'}</p>
-              <AppleCardsCarouselDemo />
+              <AppleCardsCarouselDemo
+                heading={isFr ? 'Photos de conference' : 'Conference Photos'}
+                category={isFr ? 'San Francisco, 2026' : 'San Francisco, 2026'}
+                description={isFr ? 'Photo des moments forts de la conference.' : 'Photo from conference highlights and networking.'}
+                images={conferencePics}
+              />
             </div>
             <div className="bento-card col-span-1 row-span-2">
               <p className="section-title">{isFr ? 'Evenement' : 'Event'}</p>
               <h3>RSA Conference 2026</h3>
               <p className="exp-meta">San Francisco, CA</p>
-              <p>
-                {isFr
-                  ? 'Conference financee par D3 Security et par la FAEE de l Universite de Sherbrooke.'
-                  : 'Conference attendance sponsored by D3 Security and the FAEE of Universite de Sherbrooke.'}
-              </p>
+              <div className="mt-3 space-y-3 text-sm leading-7 text-slate-200/90">
+                <p className="font-medium text-blue-100/90">
+                  {isFr
+                    ? 'Un remerciement special a D3 Security et à la FAEE de l\'Universite de Sherbrooke.'
+                    : 'A special thanks to D3 Security and to the FAEE of the University of Sherbrooke.'}
+                </p>
+                <p>
+                  {isFr
+                    ? 'Dans le cadre du projet Thornmail, nous avons participé à la RSAC Conference 2026 à San Francisco, un des plus grands événements en cybersécurité au monde. Cette activité nous a permis de découvrir les plus récentes technologies et tendances du domaine, notamment en intelligence artificielle, en sécurité des systèmes et en gestion des menaces informatiques.'
+                    : 'As part of the Thornmail project, we attended the RSAC Conference 2026 in San Francisco, one of the largest cybersecurity events in the world. This experience allowed us to discover the latest technologies and trends in the field, especially in artificial intelligence, systems security, and cyber threat management.'}
+                </p>
+                <p>
+                  {isFr
+                    ? 'Durant la conférence, il y avait plus de 600 kiosques d’entreprises spécialisées en cybersécurité et avons assisté à plusieurs présentations offertes par des entreprises reconnues comme CrowdStrike, IBM et D3 Security, qui nous a invités à participer à l’événement. Cette expérience nous a permis d’échanger avec des professionnels du milieu et d’approfondir nos connaissances techniques.'
+                    : 'During the conference, there were more than 600 booths from companies specializing in cybersecurity to visit and attended several talks offered by well-known companies such as CrowdStrike, IBM, and D3 Security, which invited us to take part in the event. This experience allowed us to connect with industry professionals and deepen our technical knowledge.'}
+                </p>
+              </div>
             </div>
 
             <div className="bento-card col-span-2">
