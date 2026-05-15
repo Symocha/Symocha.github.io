@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+// Link not used in this page
 import {
   IconHome,
   IconSchool,
   IconBrandGithub,
   IconMail,
 } from '@tabler/icons-react'
+import { IconTrophy } from '@tabler/icons-react'
 import { BackgroundPathsBackdrop } from '../components/background-paths'
 import { FloatingDock } from '../components/ui/floating-dock'
 import { TextHoverEffect } from '../components/ui/text-hover-effect'
+import AppleCardsCarouselDemo from '../components/ui/AppleCardsCarouselDemo'
 
 export default function ConferencePage() {
   const [lang, setLang] = useState<'en' | 'fr'>('en')
@@ -30,6 +32,11 @@ export default function ConferencePage() {
       title: isFr ? 'Conference' : 'Conference',
       icon: <IconSchool className="h-full w-full" />,
       href: '#/conference',
+    },
+    {
+      title: isFr ? 'Thornmail' : 'Thornmail',
+      icon: <IconTrophy className="h-full w-full" />,
+      href: '#/thornmail',
     },
     {
       title: isFr ? 'GitHub' : 'GitHub',
@@ -86,7 +93,12 @@ export default function ConferencePage() {
 
         <section className="content-section bento-container">
           <div className="bento-grid">
-            <div className="bento-card col-span-2">
+
+            <div className="bento-card col-span-3 row-span-2 dark:bg-slate-900 bg-slate-800 p-6">
+              <p className="section-title">{isFr ? 'Galerie' : 'Photo Gallery'}</p>
+              <AppleCardsCarouselDemo />
+            </div>
+            <div className="bento-card col-span-1 row-span-2">
               <p className="section-title">{isFr ? 'Evenement' : 'Event'}</p>
               <h3>RSA Conference 2026</h3>
               <p className="exp-meta">San Francisco, CA</p>
@@ -112,7 +124,7 @@ export default function ConferencePage() {
               </div>
             </div>
 
-            <div className="bento-card col-span-3 row-span-2" onMouseLeave={() => undefined}>
+            <div className="bento-card col-span-2 row-span-2" onMouseLeave={() => undefined}>
               <p className="section-title">{isFr ? 'Sessions marquantes' : 'Notable Sessions'}</p>
               <div className="ongoing-list">
                 <div className="ongoing-item">
@@ -142,14 +154,9 @@ export default function ConferencePage() {
               </div>
             </div>
 
-            <div className="bento-card experience">
-              <p className="section-title">{isFr ? 'Networking' : 'Networking'}</p>
-              <p>
-                {isFr
-                  ? 'Echanges avec des analystes SOC, des equipes blue-team et des ingenieurs detection de plusieurs organisations.'
-                  : 'Conversations with SOC analysts, blue-team practitioners, and detection engineers across organizations.'}
-              </p>
-            </div>
+            
+
+            
 
             <div className="bento-card col-span-2 timeline-card minimal-card">
               <p className="section-title">{isFr ? 'Retombees concretes' : 'Practical Outcomes'}</p>
@@ -179,6 +186,14 @@ export default function ConferencePage() {
                   </span>
                 </li>
               </ol>
+            </div>
+            <div className="bento-card experience">
+              <p className="section-title">{isFr ? 'Networking' : 'Networking'}</p>
+              <p>
+                {isFr
+                  ? 'Echanges avec des analystes SOC, des equipes blue-team et des ingenieurs detection de plusieurs organisations.'
+                  : 'Conversations with SOC analysts, blue-team practitioners, and detection engineers across organizations.'}
+              </p>
             </div>
           </div>
         </section>

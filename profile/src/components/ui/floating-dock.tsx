@@ -171,8 +171,10 @@ function IconContainer({
     ? 'relative flex aspect-square items-center justify-center rounded-full border border-blue-400/50 bg-slate-700/60 text-blue-100 transition-colors'
     : 'relative flex aspect-square items-center justify-center rounded-full border border-blue-500/20 bg-slate-800/40 text-blue-300 transition-colors'
 
+  const isExternal = href.startsWith('http') || href.startsWith('mailto:')
+
   return (
-    <a href={href}>
+    <a href={href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined}>
       <motion.div
         ref={ref}
         style={{ width, height }}

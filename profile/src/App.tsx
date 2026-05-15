@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   IconHome,
   IconBrandGithub,
   IconMail,
   IconSchool,
+  IconTrophy,
 } from '@tabler/icons-react'
 import './App.css'
 import { BackgroundPathsBackdrop } from './components/background-paths'
@@ -27,7 +27,7 @@ const PROJECTS_EN: Project[] = [
       'Thornmail project was financed by the FAEE (Université de Sherbrooke)',
     ],
     tags: ['Python', 'React', 'Ollama', 'LLM', 'Cybersecurity'],
-    link: 'https://devpost.com/software/sentinel-2sjz9f',
+    link: '#/thornmail',
   },
   {
     title: 'Online Multiplayer Card Game',
@@ -123,9 +123,14 @@ function App() {
       href: '#/conference',
     },
     {
+      title: isFr ? 'Thornmail' : 'Thornmail',
+      icon: <IconTrophy className="h-full w-full" />,
+      href: '#/thornmail',
+    },
+    {
       title: isFr ? 'GitHub' : 'GitHub',
       icon: <IconBrandGithub className="h-full w-full" />,
-      href: 'https://github.com/Symocha',
+      href: 'https://github.com/Symocha' ,
     },
     {
       title: isFr ? 'Contact' : 'Contact',
