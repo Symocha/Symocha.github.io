@@ -296,9 +296,7 @@ function App() {
 
       <section className="landing-section">
         <p className="kicker text-center">{isFr ? 'Profil' : 'Profile'}</p>
-        <div className="h-32 w-full flex justify-start">
-          <TextHoverEffect text={isSmallScreen ? "OLIVIER" : "OLIVIER TRAN"} />
-        </div>
+        <TextHoverEffect text={isSmallScreen ? 'OLIVIER TRAN' : 'OLIVIER TRAN'} size={isSmallScreen ? 'text-4xl' : 'text-4xl'} />
         <div className="w-full flex justify-center">
           <p className="subtitle text-center">{isFr ? 'Étudiant en informatique' : 'Computer Science Student'}</p>
         </div>
@@ -367,7 +365,7 @@ function App() {
         </div>        
 
         {/* ── Hackathon ── */}
-        <Link to="/thornmail" className="bento-card hackathon block cursor-pointer transition-transform duration-200 hover:-translate-y-1">
+        <Link to="/thornmail" className="bento-card hackathon block cursor-pointer group transition-transform duration-500 hover:-translate-y-1 transition-colors hover:bg-gray-400/30 dark:hover:bg-gray-500/30">
           <p className="section-title">{isFr ? 'Hackathons' : 'Hackathons'}</p>
           <h3> ConUHacks 2026</h3>
           <p>{isFr ? 'Defi commandite par D3 Security ' : 'D3 Security Sponsored Challenge '}<div className='hack-position'>{isFr ? '1re place' : '1st Place'}</div></p>
@@ -375,7 +373,7 @@ function App() {
         </Link>
 
         {/* ── Conference ── */}
-        <Link to="/conference" className="bento-card experience block cursor-pointer transition-transform duration-200 hover:-translate-y-1">
+        <Link to="/conference" className="bento-card experience block cursor-pointer group transition-transform duration-500 hover:-translate-y-1 transition-colors hover:bg-gray-400/30 dark:hover:bg-gray-500/30">
           <p className="section-title">{isFr ? 'Conference' : 'Conference'}</p>
           <h3>RSAC</h3>
           <p className="exp-meta">San Francisco 2026</p>
