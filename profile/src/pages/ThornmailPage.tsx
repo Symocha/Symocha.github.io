@@ -139,7 +139,7 @@ export default function ThornmailPage() {
               </div>
             </div>
 
-            <div className="bento-card col-span-4 row-span-2 dark:bg-slate-900 bg-slate-800 p-6">
+            <div className="bento-card hidden col-span-4 row-span-2 dark:bg-slate-900 bg-slate-800 p-6 md:block">
               <p className="section-title">{isFr ? 'Photos' : 'Photos'}</p>
               <AppleCardsCarouselDemo
                 heading={isFr ? 'Photos Thornmail' : 'Thornmail Photos'}
@@ -148,6 +148,7 @@ export default function ThornmailPage() {
                 images={thornmailPics}
               />
             </div>
+            
 
             <div className="bento-card experience">
               <p className="section-title">{isFr ? 'Resultats' : 'Outcomes'}</p>

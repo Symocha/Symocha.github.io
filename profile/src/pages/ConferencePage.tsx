@@ -104,7 +104,7 @@ export default function ConferencePage() {
         <section className="content-section bento-container">
           <div className="bento-grid">
 
-            <div className="bento-card col-span-3 row-span-2 dark:bg-slate-900 bg-slate-800 p-6">
+            <div className="bento-card col-span-3 row-span-2 dark:bg-slate-900 bg-slate-800 p-6 hidden md:block">
               <p className="section-title">{isFr ? 'Galerie' : 'Photo Gallery'}</p>
               <AppleCardsCarouselDemo
                 heading={isFr ? 'Photos de conference' : 'Conference Photos'}

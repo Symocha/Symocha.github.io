@@ -1057,26 +1057,64 @@ html {
 
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
   .col-span-3 { grid-column: span 2; }
   .col-span-4 { grid-column: span 2; }
+  .row-span-2 { grid-row: span 1; }
+  
+  .bento-container {
+    padding: 1.5rem;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .col-span-2 { grid-column: span 1; }
+  .col-span-3 { grid-column: span 2; }
+  .col-span-4 { grid-column: span 2; }
+  .row-span-2 { grid-row: span 1; }
+  
+  .bento-card {
+    padding: 1.25rem;
+  }
+  
+  .bento-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
   .landing-section {
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 4rem 1rem 2rem;
+    padding: 3.5rem 0.75rem 1.5rem;
   }
 
   .bento-grid {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
-  .col-span-2, .col-span-3, .col-span-4 {
+  
+  .col-span-1,
+  .col-span-2,
+  .col-span-3,
+  .col-span-4 {
     grid-column: span 1;
   }
-  .bento-container {
+  
+  .row-span-2 { grid-row: span 1; }
+  
+  .bento-card {
     padding: 1rem;
+  }
+  
+  .bento-container {
+    padding: 0.75rem;
   }
 
   .hero-cta {
