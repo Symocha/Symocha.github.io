@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import {
+  IconHome,
+  IconBrandGithub,
+  IconMail,
+  IconSchool,
+} from '@tabler/icons-react'
 import './App.css'
 import { BackgroundPathsBackdrop } from './components/background-paths'
 import { ProjectCard } from './components/ProjectCard'
+import { FloatingDock } from './components/ui/floating-dock'
 import { TextHoverEffect } from './components/ui/text-hover-effect'
 import type { Project } from './components/ProjectCard'
 
@@ -103,6 +111,28 @@ function App() {
 
   const isFr = lang === 'fr'
   const projects = isFr ? PROJECTS_FR : PROJECTS_EN
+  const dockLinks = [
+    {
+      title: isFr ? 'Accueil' : 'Home',
+      icon: <IconHome className="h-full w-full" />,
+      href: '#/',
+    },
+    {
+      title: isFr ? 'Conference' : 'Conference',
+      icon: <IconSchool className="h-full w-full" />,
+      href: '#/conference',
+    },
+    {
+      title: isFr ? 'GitHub' : 'GitHub',
+      icon: <IconBrandGithub className="h-full w-full" />,
+      href: 'https://github.com/Symocha',
+    },
+    {
+      title: isFr ? 'Contact' : 'Contact',
+      icon: <IconMail className="h-full w-full" />,
+      href: 'mailto:Olivier.Tran@USherbrooke.ca',
+    },
+  ]
 
   useEffect(() => {
     const handleResize = () => {
@@ -230,7 +260,7 @@ function App() {
   }, [])
 
   return (
-    <div className="page-shell">
+    <div className="page-shell pb-28">
       <div
         aria-hidden="true"
         style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}
@@ -259,7 +289,7 @@ function App() {
 
 
       <section className="landing-section">
-        <p className="kicker text-center">{isFr ? 'Tech' : 'Tech'}</p>
+        <p className="kicker text-center">{isFr ? 'Profil' : 'Profile'}</p>
         <div className="h-32 w-full flex justify-start">
           <TextHoverEffect text={isSmallScreen ? "OLIVIER" : "OLIVIER TRAN"} />
         </div>
@@ -267,12 +297,13 @@ function App() {
           <p className="subtitle text-center">{isFr ? 'Étudiant en informatique' : 'Computer Science Student'}</p>
         </div>
 
-        <div className="hero-cta justify-center">
+        {/* <div className="hero-cta justify-center">
           <a href="#projects" className="cta-primary">{isFr ? 'Voir les projets' : 'View Projects'}</a>
           <a href="mailto:Olivier.Tran@USherbrooke.ca" className="cta-secondary">{isFr ? 'Me contacter' : 'Contact Me'}</a>
-        </div>
+          <Link to="/conference" className="cta-secondary">{isFr ? 'Page conference' : 'Conference Page'}</Link>
+        </div> */}
 
-        <a href="#snapshot" className="scroll-cue" aria-label={isFr ? 'Defiler vers les sections du portfolio' : 'Scroll to portfolio sections'}>
+        <a href="#" className="scroll-cue" aria-label={isFr ? 'Defiler vers les sections du portfolio' : 'Scroll to portfolio sections'}>
           
           <span className="scroll-arrow"><i className="fa-solid fa-arrow-down"></i></span>
         </a>
@@ -504,6 +535,7 @@ function App() {
       </div>
       </section>
       </div>
+      <FloatingDock items={dockLinks} mobileClassName="md:translate-y-0" />
     </div>
   )
 }

@@ -5,11 +5,13 @@ import { motion } from "motion/react";
 interface TextHoverEffectProps {
   text: string;
   duration?: number;
+  size?: string;
 }
 
 export function TextHoverEffect({
   text,
   duration,
+  size,
 }: TextHoverEffectProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
@@ -86,7 +88,7 @@ export function TextHoverEffect({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
+        className={`fill-transparent stroke-neutral-200 font-[helvetica] ${size ?? 'text-7xl'} font-bold dark:stroke-neutral-800`}
         style={{ opacity: hovered ? 0.7 : 0 }}
       >
         {text}
@@ -97,7 +99,7 @@ export function TextHoverEffect({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
+        className={`fill-transparent stroke-neutral-200 font-[helvetica] ${size ?? 'text-7xl'} font-bold dark:stroke-neutral-800`}
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
@@ -118,7 +120,7 @@ export function TextHoverEffect({
         stroke="url(#textGradient)"
         strokeWidth="0.3"
         mask="url(#textMask)"
-        className="fill-transparent font-[helvetica] text-7xl font-bold"
+        className={`fill-transparent font-[helvetica] ${size ?? 'text-7xl'} font-bold`}
       >
         {text}
       </text>
