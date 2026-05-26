@@ -434,6 +434,11 @@ function App() {
               <p>{isFr ? 'Analyse les alertes reliees et suggere une priorite analyste selon le contexte.' : 'Analyzes related alerts and suggests analyst priority based on context.'}</p>
             </div>
             <div className="ongoing-item">
+              <h4>MedReturn</h4>
+              <span className="status-pill">{isFr ? 'En cours' : 'In Progress'}</span>
+              <p>{isFr ? 'Système Automatisé de Retour de Médicaments' : 'Automated Medication Return System.'}</p>
+            </div>
+            <div className="ongoing-item">
               <h4>The Listening Room</h4>
               <span className="status-pill">{isFr ? 'En cours' : 'In Progress'}</span>
               <p>{isFr ? 'Application de discussion et de notation K-pop.' : 'Kpop discussion and rating app.'}</p>
@@ -461,6 +466,10 @@ function App() {
             <li>
               <strong>{isFr ? 'Hiver 2026' : 'Winter 2026'}</strong>
               <span>{isFr ? 'Trimestre de cours' : 'Course Term'}</span>
+            </li>
+            <li>
+              <strong>{isFr ? 'Été 2026' : 'Summer 2026'}</strong>
+              <span>{isFr ? 'Stage - 12 semaines' : 'Internship - 12 weeks'}</span>
             </li>
           </ol>
         </div>
