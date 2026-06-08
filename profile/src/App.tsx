@@ -58,6 +58,42 @@ const PROJECTS_EN: Project[] = [
     tags: ['Flutter', 'Dart', 'Spring Boot', 'Firebase'],
     link: 'https://github.com/Symocha/App_Mobile_Taches',
   },
+  {
+    title: 'RanduinsOmen · Restaurant Manager',
+    meta: 'Personal Project',
+    summary: 'Fullstack restaurant management app with personal ratings, friends list, and group outing organizer.',
+    details: [
+      'Personal restaurant ratings system with friends list and group outing organizer',
+      'Fullstack architecture with React frontend and Node.js REST API',
+      'PostgreSQL database managed via Prisma ORM',
+      'Real-time communication via Socket.io',
+    ],
+    tags: ['React', 'Node.js', 'Prisma', 'PostgreSQL', 'Socket.io'],
+    link: 'https://github.com/Symocha/RanduinsOmen',
+  },
+  {
+    title: 'Multiplexed 7-Segment Display',
+    meta: 'Embedded · ATmega328p',
+    summary: 'Low-level 4-digit 7-segment display driver using direct register programming on ATmega328p.',
+    details: [
+      'Direct register programming: Timer0 CTC, interrupts, and GPIO — no Arduino libraries',
+      '4-digit multiplexing at 1 kHz via PORTB/PORTC',
+      'RS232 serial communication for digit data input',
+    ],
+    tags: ['C', 'ATmega328p', 'RS232', 'AVRDUDESS', 'Embedded'],
+    link: 'https://github.com/Symocha/ATmega328p_7SDisplay',
+  },
+  {
+    title: 'Automated Door System',
+    meta: 'Embedded · Arduino',
+    summary: 'Arduino-based automated door with LIDAR object detection and dual motor control.',
+    details: [
+      'Object detection and classification via TF-Luna LIDAR sensor over I2C protocol',
+      'Dual motor control based on detected object size using trigonometric calculation',
+    ],
+    tags: ['C++', 'Arduino', 'I2C', 'LIDAR', 'Embedded'],
+    link: 'https://github.com/Symocha/ArduinoDoor',
+  },
 ]
 
 const PROJECTS_FR: Project[] = [
@@ -102,6 +138,42 @@ const PROJECTS_FR: Project[] = [
     ],
     tags: ['Flutter', 'Dart', 'Spring Boot', 'Firebase'],
     link: 'https://github.com/Symocha/App_Mobile_Taches',
+  },
+  {
+    title: 'RanduinsOmen · Gestion de restaurants',
+    meta: 'Projet personnel',
+    summary: 'Application fullstack de gestion de restaurants avec notes personnelles, liste d\'amis et organisateur de sorties.',
+    details: [
+      'Systeme de notation de restaurants avec liste d\'amis et organisateur de sorties en groupe',
+      'Architecture fullstack avec frontend React et API REST Node.js',
+      'Base de donnees PostgreSQL geree via Prisma ORM',
+      'Communication en temps reel via Socket.io',
+    ],
+    tags: ['React', 'Node.js', 'Prisma', 'PostgreSQL', 'Socket.io'],
+    link: 'https://github.com/Symocha/RanduinsOmen',
+  },
+  {
+    title: 'Afficheur 7 segments multiplexe',
+    meta: 'Embarque · ATmega328p',
+    summary: 'Pilote d\'afficheur 7 segments 4 chiffres par programmation directe de registres sur ATmega328p.',
+    details: [
+      'Programmation directe des registres : Timer0 CTC, interruptions et GPIO sans bibliotheques Arduino',
+      'Multiplexage 4 chiffres a 1 kHz via PORTB/PORTC',
+      'Communication serie RS232 pour l\'entree des donnees d\'affichage',
+    ],
+    tags: ['C', 'ATmega328p', 'RS232', 'AVRDUDESS', 'Embarque'],
+    link: 'https://github.com/Symocha/ATmega328p_7SDisplay',
+  },
+  {
+    title: 'Systeme de porte automatisee',
+    meta: 'Embarque · Arduino',
+    summary: 'Porte automatisee Arduino avec detection d\'objets par LIDAR et controle de deux moteurs.',
+    details: [
+      'Detection et classification d\'objets via capteur LIDAR TF-Luna (protocole I2C)',
+      'Controle de deux moteurs base sur la taille de l\'objet detecte par calcul trigonometrique',
+    ],
+    tags: ['C++', 'Arduino', 'I2C', 'LIDAR', 'Embarque'],
+    link: 'https://github.com/Symocha/ArduinoDoor',
   },
 ]
 
@@ -381,8 +453,23 @@ function App() {
         </Link>
             
 
+        {/* ── Certifications ── */}
+        <div className="bento-card col-span-1">
+          <p className="section-title">{isFr ? 'Certifications' : 'Certifications'}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
+            <div>
+              <h3 style={{ fontSize: '0.9rem', fontWeight: 600, color: '#e4e4e7', marginBottom: '0.15rem' }}>Cisco CCNA 1</h3>
+              <p style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>{isFr ? 'Introduction aux réseaux' : 'Introduction to Networks'}</p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '0.9rem', fontWeight: 600, color: '#e4e4e7', marginBottom: '0.15rem' }}>Cisco CCNA 2</h3>
+              <p style={{ fontSize: '0.8rem', color: '#a1a1aa' }}>{isFr ? 'Commutation, routage et essentiels sans fil' : 'Switching, Routing & Wireless Essentials'}</p>
+            </div>
+          </div>
+        </div>
+
         {/* ── Tools & DB ── */}
-        <div className="bento-card col-span-2">
+        <div className="bento-card col-span-1">
           <p className="section-title">{isFr ? 'Outils et bases de donnees' : 'Tools & Databases'}</p>
           <div className="tag-list">
             {['SQL Server','SSMS','Git','Azure DevOps','Figma','OrCAD','Oracle Cloud','Postman','Linux','Ollama'].map(t => (<span className="tag" key={t}>{t}</span>))}
